@@ -1,20 +1,11 @@
-function gcd(a, b) {
-  let r
-  while (b != 0) {
-    r = a % b
-    a = b
-    b = r
-  }
-  return a
+function nlcm(num) {
+    return num.reduce((a,b) => a*b / gcd(a,b))  
 }
+
+function gcd(a, b) {
+    return a % b ? gcd(b, a%b) : b
+}
+
 function solution(arr) {
-    let i =0;
-    let lcm = 0;
-    while(arr.length){
-        let first = arr.shift();
-        let second = arr.shift();
-        lcm = (first * second) / gcd(first,second);
-        if(arr.length !== 0)arr.unshift(lcm);
-    }
-    return lcm;
+    return nlcm(arr);
 }
