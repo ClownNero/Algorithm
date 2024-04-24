@@ -1,23 +1,17 @@
 function solution(record) {
-    const answer = [];
-    const userInfo = {};
-    
-    for(let data of record ) {
-        const [command, uid, nickName] = data.split(' ');
-        if (command === "Enter") {
-            userInfo[uid] = nickName;
-            answer.push(`${uid}님이 들어왔습니다.`);
-        }
-        else if (command === "Leave") {
-            answer.push(`${uid}님이 나갔습니다.`);
-        }
-        else if (command === "Change") {
-            userInfo[uid] = nickName;
-        }   
-    }
-    for(let i = 0; i < answer.length; i++){
-        const uid = answer[i].split("님")[0];
-        answer[i] = answer[i].replace(uid,userInfo[uid]);
-    }
-    return answer;
+    let answer = []
+    const userInfo = new Map()
+
+    record.forEach(entry => {
+        let [command, uid, nick] = entry.split(' ')
+        if (command === 'Enter' || command === 'Change') userInfo.set(uid, nick)
+    })
+
+    record.forEach(entry => {
+        let [command, uid] = entry.split(' ')
+        if (command === 'Enter') answer.push(`${userInfo.get(uid)}님이 들어왔습니다.`)
+        if (command === 'Leave') answer.push(`${userInfo.get(uid)}님이 나갔습니다.`)
+    })
+
+    return answer
 }
