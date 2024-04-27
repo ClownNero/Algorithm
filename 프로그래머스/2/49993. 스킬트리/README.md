@@ -1,10 +1,10 @@
 # [level 2] 스킬트리 - 49993 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/49993#fnref1) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/49993) 
 
 ### 성능 요약
 
-메모리: 33.7 MB, 시간: 2.44 ms
+메모리: 33.4 MB, 시간: 0.21 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 25일 18:06:41
+2024년 04월 27일 23:17:26
 
 ### 문제 설명
 

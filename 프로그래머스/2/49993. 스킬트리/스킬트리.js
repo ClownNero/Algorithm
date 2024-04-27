@@ -3,7 +3,6 @@ function solution(skill, skill_trees) {
     let count = 0;
     for(let i = 0; i < skill_trees.length; i++) {
         const str = skill_trees[i].split("").filter(word => newArr.includes(word)).join("");
-        console.log(str);
         if(str === skill.substring(0,str.length)) {
             count++;
         }
