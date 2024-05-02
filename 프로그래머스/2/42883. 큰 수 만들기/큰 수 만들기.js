@@ -11,7 +11,6 @@ function solution(number, k) {
         }
         stack.push(el);
     }
-    
     stack.splice(stack.length-k,k);
     answer = stack.join("");
     return answer;
