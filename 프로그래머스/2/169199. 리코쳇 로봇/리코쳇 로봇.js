@@ -1,4 +1,5 @@
 function solution(board) {
+    // 문제에는 설명이 없지만 도착 지점이 정확히 G여야 멈출 수 있다.
     let answer = -1;
     
     const map = board.map(item => item.split(""));
