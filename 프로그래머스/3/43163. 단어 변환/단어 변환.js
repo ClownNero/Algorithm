@@ -1,33 +1,32 @@
 function solution(begin, target, words) {
     let answer = 0;
-    const visited = [];
-    const queue = [];
-    
-    if(!words.includes(target)) return 0;
-    
-    queue.push([begin, answer]);
-    
-    while(queue){
-        let [v, cnt] = queue.shift();
-        
-        if(v === target) {
-            return cnt;
+    let count = 0;
+    let visited = Array.from({length: words.length}, () => 0);
+    function dfs(begin, target, count){
+        if(begin === target){
+            answer = count;
+            return;
         }
         
-        words.forEach(word => {
-            let notEqual = 0;
-            if(visited.includes(word)) return;
+        for(let i = 0; i < words.length; i++){
+            if(visited[i] === 1) continue;
             
-            for(let i = 0; i<word.length; i++){
-                if(word[i] !== v[i]) notEqual++;
+            let sameCount = 0;
+            
+            for(let j =0; j < begin.length; j++){
+                if(begin.charAt(j) === words[i].charAt(j)){
+                    sameCount++;
+                }
             }
             
-            if(notEqual === 1){
-                queue.push([word, ++cnt]);
-                visited.push(word);
+            if(sameCount === begin.length-1){
+                visited[i] = 1;
+                dfs(words[i], target, count+1);
+                visited[i] = 0;
             }
-        });
+        }
     }
     
+    dfs(begin, target, count);
     return answer;
 }
