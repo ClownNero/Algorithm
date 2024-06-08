@@ -1,23 +1,43 @@
 function solution(expression) {
-    const prior = [
-        ['-', '*', '+'],
-        ['-', '+', '*'],
-        ['*', '-', '+'],
-        ['*', '+', '-'],
-        ['+', '*', '-'],
+    const operations = [
         ['+', '-', '*'],
+        ['+', '*', '-'],
+        ['-', '+', '*'],
+        ['-', '*', '+'],
+        ['*', '+', '-'],
+        ['*', '-', '+']
     ];
-    let cand = [];
-    
-    for(let op of prior){
+
+    let maxValue = 0;
+
+    for (const op of operations) {
         const temp = expression.split(/(\D)/);
-        for(let exp of op){
-            while(temp.includes(exp)){
-                const idx = temp.indexOf(exp);
-                temp.splice(idx - 1, 3, eval(temp.slice(idx-1, idx+2).join('')));
+        const values = temp.filter((v, i) => i % 2 === 0).map(Number);
+        const signs = temp.filter((v, i) => i % 2 !== 0);
+
+        for (let i = 0; i < op.length; i++) {
+            const target = op[i];
+            while (signs.includes(target)) {
+                const index = signs.indexOf(target);
+                const result = operate(values[index], values[index + 1], target);
+                values.splice(index, 2, result);
+                signs.splice(index, 1);
             }
         }
-        cand.push(Math.abs(temp[0]));
+
+        maxValue = Math.max(maxValue, Math.abs(values[0]));
     }
-    return Math.max(...cand);
+
+    return maxValue;
+}
+
+function operate(a, b, op) {
+    switch (op) {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+            return a * b;
+    }
 }
