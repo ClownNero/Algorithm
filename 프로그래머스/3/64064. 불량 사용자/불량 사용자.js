@@ -2,8 +2,10 @@ function solution(user_id, banned_id) {
     let bannedSets = [];
 
     function isMatch(user, banned) {
+        // 문자열 길이 다르단 경우 false
         if (user.length !== banned.length) return false;
         for (let i = 0; i < user.length; i++) {
+            // banned 문자열에 *가 아닌 문자가 있는데 user 문자열에 해당 문자가 없는 경우 false
             if (banned[i] !== '*' && user[i] !== banned[i]) return false;
         }
         return true;
