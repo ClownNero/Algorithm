@@ -3,7 +3,7 @@ function solution(t, p) {
     
     for(let i = 0; i < t.length - p.length + 1; i++) {
         let temp = t.slice(i, i + p.length);
-        if(temp <= p) {
+        if(+temp <= +p) {
             answer++;
         }
     }
