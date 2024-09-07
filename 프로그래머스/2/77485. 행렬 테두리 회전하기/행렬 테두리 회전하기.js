@@ -1,6 +1,9 @@
 function solution(rows, columns, queries) {
+
     // 행렬 생성
-    const matrix = Array.from({length: rows},(_,i)=> Array.from({length:columns},(_,j)=> i * columns + j + 1));
+    const matrix = new Array(rows).fill(null).map((_, i) => {
+  return new Array(columns).fill(null).map((_, j) => i * columns + j + 1);
+});
     
     // 결과 배열
     const answer = [];
